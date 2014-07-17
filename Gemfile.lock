@@ -111,9 +111,9 @@ PLATFORMS
 DEPENDENCIES
   coffee-rails (~> 3.2.1)
   jquery-rails
-  pg (= 0.15.1)
+  pg
   rails (= 3.2.17)
-  rails_12factor (= 0.0.2)
+  rails_12factor
   redis
   sass-rails (~> 3.2.3)
   sqlite3
