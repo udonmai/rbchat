@@ -5,12 +5,12 @@
 	<meta charset="utf-8">
 	<title>茶室 -「茶粥」</title>
 
-	<link rel="shortcut icon" href="{{ baseurl }}static/img/favicon.ico">
-	<link rel="stylesheet" href="{{ baseurl }}static/css/reset.css">
-	<link rel="stylesheet" href="{{ baseurl }}static/css/bootstrap.min.css">
-	<link rel="stylesheet" href="{{ baseurl }}static/css/common.css">
-	<link rel="stylesheet" href="{{ baseurl }}static/css/room.css">
-	<script src="{{ baseurl }}static/js/lib/sea.js" data-main="{{ baseurl }}static/js/roominit"></script>	
+	<link rel="shortcut icon" href="/static/img/favicon.ico">
+	<link rel="stylesheet" href="/static/css/reset.css">
+	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
+	<link rel="stylesheet" href="/static/css/common.css">
+	<link rel="stylesheet" href="/static/css/room.css">
+	<script src="/static/js/lib/sea.js" data-main="/static/js/roominit"></script>	
 	
 </head>
 
@@ -36,7 +36,7 @@
 			<div id="sidebar">
 				<div id="logo">	
 					<div id="pic"></div>
-					<h2><img src="{{ baseurl }}static/img/pattern4.png">茶室</h2>
+					<h2><img src="/static/img/pattern4.png">茶室</h2>
 					<p>{{ room.roomname }}</p>
 				</div>
 
@@ -56,7 +56,7 @@
 					<div id="avatar"><img src="{{ user.picurl }}"></div>
 					<div id="function">
 						<div id="leave">
-							<form action="{{ baseurl }}shitsu/leave" method="post">
+							<form action="/shitsu/leave" method="post">
 								<input type="text" name="roomid" value="{{ room.roomid }}" style="display: none;"/>
 								<button type="submit">离开</button>
 							</form>

@@ -83,6 +83,7 @@ GEM
     rake (10.3.2)
     rdoc (3.12.2)
       json (~> 1.4)
+    redis (3.1.0)
     sass (3.3.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -113,6 +114,7 @@ DEPENDENCIES
   pg (= 0.15.1)
   rails (= 3.2.17)
   rails_12factor (= 0.0.2)
+  redis
   sass-rails (~> 3.2.3)
   sqlite3
   uglifier (>= 1.0.3)
