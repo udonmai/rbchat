@@ -26,8 +26,8 @@
 				<div id="userId" style="display: none;">{{ user.userId }}</div>
 				<div id="pic"><img src="{{ user.picurl }}"></div>
 				<div id="username">
-					<a href="{{ baseurl }}square/logout">离席</a>
-					<p>欢迎，{{ user.username }}</p>
+					<a href="/square/logout">离席</a>
+					<p>欢迎，<%= @user_id %></p>
 				</div>
 			</div>
 		</div>
@@ -40,21 +40,21 @@
 			<div class="lslip"></div>
 
 			<div id="latest-join" class="section">
-				{% for item in latestjoin %}
-				<a href="javascript:void(0);" name="{{ item.roomid }}" class="blocka" title="加入">
-					<div name="{{ item.roomname }}" class="ljroomsection roomsection">
+				<% @latestjoin.each do |latestjoin| %> 
+					<a href="javascript:void(0);" name="<%= latestjoin.roomid %>" class="blocka" title="加入">
+						<div name="<%= latestjoin.roomname %>" class="ljroomsection roomsection">
 						<div class="rs-above">
-							<form name="join" method="post" action="{{ baseurl }}shitsu/join" style="display: none;">
-								<input name="roomid" value="{{ item.roomid }}">
+							<form name="join" method="post" action="/shitsu/join" style="display: none;">
+								<input name="roomid" value="<%= latestjoin.roomid %>">
 							</form>
 
 							<div class="info">
-								{{ item.roomname }}
+								<%= latestjoin.roomname %>
 							</div>
 						</div>
 					</div>
 				</a>
-				{% endfor %}
+				<% end %>
 				
 				<div class="title">
 					<h3>最近进入过的茶室</h3>
@@ -64,21 +64,21 @@
 			<div class="slip"></div>
 
 			<div id="global-create" class="section">
-				{% for item in globalbuilt %}
-				<a href="javascript:void(0);" name="{{ item.roomid }}" class="blocka" title="加入">
-					<div name="{{ item.roomname }}" class="glroomsection roomsection">
+				<% @globalbuilt.each do |globalbuilt| %>
+					<a href="javascript:void(0);" name="<%= globalbuilt.roomid %>" class="blocka" title="加入">
+						<div name="<%= globalbuilt.roomname %>" class="glroomsection roomsection">
 						<div class="rs-above">
-							<form name="join" method="post" action="{{ baseurl }}shitsu/join" style="display: none;">
-								<input name="roomid" value="{{ item.roomid }}">
+							<form name="join" method="post" action="/shitsu/join" style="display: none;">
+								<input name="roomid" value="<%= globalbuilt.roomid %>">
 							</form>
 
 							<div class="info">
-								{{ item.roomname }}
+								<%= globalbuilt.roomname %>
 							</div>
 						</div>
 					</div>
 				</a>
-				{% endfor %}
+				<% end %>
 				
 				<div class="title">
 					<h3>其他友人创建的茶室</h3>
@@ -89,17 +89,17 @@
 
 			<div id="self-built" class="section">
 				<div id="self-built-inner">
-				{% for item in selfbuilt %}
-				<div id="room{{ item.roomid }}" class="relative">
-					<a href="javascript:void(0);" name="{{ roomid }}" class="blocka" title="加入">
-						<div name="{{ item.roomname }}" class="sbroomsection roomsection">
+				<% @selfbuilt.each do |selfbuilt| %>
+				<div id="room<%= selfbuilt.roomid %>" class="relative">
+					<a href="javascript:void(0);" name="<%= selfbuilt.roomid %>" class="blocka" title="加入">
+						<div name="<%= selfbuilt.roomname %>" class="sbroomsection roomsection">
 							<div class="rs-above">
-								<form name="join" method="post" action="{{ baseurl }}shitsu/join" style="display: none;">
-									<input class="forminput" name="roomid" value="{{ item.roomid }}">
+								<form name="join" method="post" action="/shitsu/join" style="display: none;">
+									<input class="forminput" name="roomid" value="<%= selfbuilt.roomid %>">
 								</form>	
 									
 								<div class="info">
-									{{ item.roomname }}
+									<%= selfbuilt.roomname %>
 								</div>
 	
 							</div>
@@ -107,12 +107,12 @@
 					</a>
 								
 					<div class="rs-low" style="display: none;">
-						<div class="rsl-l"><p>修改</p><p class="rid" style="display: none;">{{ item.roomid }}</p></div>
-						<div class="rsl-r"><p>注销</p><p class="rid" style="display: none;">{{ item.roomid }}</p></div>
+						<div class="rsl-l"><p>修改</p><p class="rid" style="display: none;"><%= selfbuilt.roomid %></p></div>
+						<div class="rsl-r"><p>注销</p><p class="rid" style="display: none;"><%= selfbuilt.roomid %></p></div>
 					</div>
 
 				</div>
-				{% endfor %}
+				<% end %>
 				</div>
 
 				<div class="title">
