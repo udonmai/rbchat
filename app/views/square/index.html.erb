@@ -27,7 +27,7 @@
 				<div id="pic"><img src="{{ user.picurl }}"></div>
 				<div id="username">
 					<a href="/square/logout">离席</a>
-					<p>欢迎，<%= @user_id %></p>
+					<p>欢迎，<%= @user.username %></p>
 				</div>
 			</div>
 		</div>
@@ -38,7 +38,6 @@
 			</div>
 				
 			<div class="lslip"></div>
-
 			<div id="latest-join" class="section">
 				<% @latestjoin.each do |latestjoin| %> 
 					<a href="javascript:void(0);" name="<%= latestjoin.roomid %>" class="blocka" title="加入">

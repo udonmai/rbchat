@@ -23,10 +23,6 @@ class SquareController < ApplicationController
 			@latestjoin = {}
 			@latestjoin[@tmp_room['roomid']] = {}
 			@latestjoin[@tmp_room['roomid']] = @tmp_room
-
-			@latestjoin.each do
-				p 'fasdf'
-			end
 		}
 
 		@globalbuilts.each { |globalbuilt| 
