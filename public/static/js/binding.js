@@ -31,7 +31,7 @@ define(function(require) {
 					userId: userid,
 					roomname: roomname
 					}, function(data) {
-						var data = JSON.parse(data);
+						//var data = JSON.parse(data);
 						if (data['s'] == 'success') {
 							//第一次创建则刷新
 							if ($('.relative').length == 0)
@@ -67,7 +67,7 @@ define(function(require) {
 					userId: userid,
 					roomid: roomid
 					}, function(data) {
-						var data = JSON.parse(data);
+						//var data = JSON.parse(data);
 						if (data['state'] == 'fail') {
 							alert(data['msg']);	
 						} 
@@ -92,7 +92,7 @@ define(function(require) {
 					roomid: roomid,
 					newroomname: newroomname
 					}, function(data) {
-						var data = JSON.parse(data);
+						//var data = JSON.parse(data);
 						if (data['state'] == 'fail') {
 							alert(data['msg']);	
 						} 
@@ -114,7 +114,7 @@ define(function(require) {
 				$.post(baseurl + 'exist', {
 					roomid: roomid
 					}, function(data) {
-						var data = JSON.parse(data);
+						//var data = JSON.parse(data);
 						if (data['state'] == 'fail') {
 							alert('很抱歉它已经被销毁了 :(');
 							that.remove();
@@ -132,7 +132,7 @@ define(function(require) {
 				$.post(baseurl + 'exist', {
 					roomid: roomid
 					}, function(data) {
-						var data = JSON.parse(data);
+						//var data = JSON.parse(data);
 						if (data['state'] == 'fail') {
 							alert('很抱歉它已经被销毁了 :(');
 							that.remove();

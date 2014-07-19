@@ -1,15 +1,15 @@
 class Room < ActiveRecord::Base
-  attr_accessible :creator, :roomname
+	attr_accessible :creator, :roomname
 
-  validates :roomname, presence: true
-  validates :creator, presence: true
+	validates :roomname, presence: true
+	validates :creator, presence: true
 
-	def add(userId, roomname)
-		@room = Room.new
+	def self.add(userId, roomname)
+		@room = new
 		@room.roomname = roomname
 		@room.creator = userId
 		@room.save
-		@roomid = Room.where(roomname: roomname).first.id
+		@roomid = where(roomname: roomname).first.id
 
 		Redis.sadd(userId + 'created', @roomid)
 		Redis.sadd('globalbuilt', @roomid)
@@ -17,8 +17,8 @@ class Room < ActiveRecord::Base
 		return @roomid
 	end
 
-	def destroy(userId, roomid)
-		@room = Room.where(id: roomid).first
+	def self.destroy(userId, roomid)
+		@room = where(id: roomid).first
 		if userId != @room.creator
 			return false
 		end
@@ -29,8 +29,8 @@ class Room < ActiveRecord::Base
 		return true
 	end
 
-	def modify(newroomname, roomid, userId)
-		@room = Room.where(id: roomid)
+	def self.modify(newroomname, roomid, userId)
+		@room = where(id: roomid)
 		if userId != @room.creator
 			return false
 		end
@@ -41,8 +41,8 @@ class Room < ActiveRecord::Base
 		return true
 	end
 
-	def get(roomid)
-		@room = Room.where(id: roomid)
+	def self.get(roomid)
+		@room = where(id: roomid)
 		if !@room
 			return false
 		end
@@ -50,7 +50,7 @@ class Room < ActiveRecord::Base
 		return @room
 	end
 
-	def join(roomid, userId)
+	def self.join(roomid, userId)
 		Redis.sadd('room' + roomid + 'mblist', userId)
 		Redis.incr('room' + roomid + 'onlines')
 
@@ -64,14 +64,14 @@ class Room < ActiveRecord::Base
 		end
 	end
 
-	def leave(roomid, userId)
+	def self.leave(roomid, userId)
 		Redis.srem('room' + roomid + 'mblist', userId)
 
 		Redis.decr('room' + roomid + 'onlines')
 		Redis.decr('globalonlines')
 	end
 
-	def onlinemembers(roomid)
+	def self.onlinemembers(roomid)
 		@member = {}
 		@members = Redis.smembers('room' + roomid + 'mblist')
 		@members.each { |member| 

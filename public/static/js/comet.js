@@ -68,7 +68,7 @@ define(function(require) {
 				roomid: roomid,
 				stamp: stamp
 				}, function(data) {
-					var data = JSON.parse(data);
+					//var data = JSON.parse(data);
 					if (data['s'] == 'none') {
 						Comet._refresh();
 						return;
@@ -101,8 +101,8 @@ define(function(require) {
 				message: Comet._html_encode(msg),
 				stamp: stamp
 			}, function(data) {
-				var sdata = JSON.parse(data);
-				if (sdata['state'] == 'success') { 
+				//var sdata = JSON.parse(data);
+				if (data['state'] == 'success') { 
 					$('#msgtext').val('');
 					}
 			});
