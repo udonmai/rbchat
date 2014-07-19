@@ -17,7 +17,7 @@
 <body>
 	<div id="wrap">
 	
-		<div id="roomid" style="display: none;">{{ room.roomid }}</div>
+		<div id="roomid" style="display: none;"><%= @room.roomid %></div>
 		
 		<div id="content">
 			<div id="chat">
@@ -37,27 +37,27 @@
 				<div id="logo">	
 					<div id="pic"></div>
 					<h2><img src="/static/img/pattern4.png">茶室</h2>
-					<p>{{ room.roomname }}</p>
+					<p><%= @room.roomname %></p>
 				</div>
 
 				<div id="member">
 					{% for item in onlinemembers %}	
 						<div class="member">
-							<div class="memberpic"><img src="{{ item.picurl }}"></div>
+							<div class="memberpic"><img src="<%= @user.email %>"></div>
 							<div class="membername">
-								<p>{{ item.username }}</p>
+								<p><%= @user.name %></p>
 							</div>
 						</div>	
 					{% endfor %}
 				</div>
 
 				<div id="user">
-					<div id="username" style="display: none;">{{ user.username }}</div>
-					<div id="avatar"><img src="{{ user.picurl }}"></div>
+					<div id="username" style="display: none;"><%= @user.name %></div>
+					<div id="avatar"><img src="<%= @user.email %>"></div>
 					<div id="function">
 						<div id="leave">
 							<form action="/shitsu/leave" method="post">
-								<input type="text" name="roomid" value="{{ room.roomid }}" style="display: none;"/>
+								<input type="text" name="roomid" value="<%= @room.id %>" style="display: none;"/>
 								<button type="submit">离开</button>
 							</form>
 							<h4>欢迎。

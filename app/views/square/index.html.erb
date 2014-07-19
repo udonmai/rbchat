@@ -23,7 +23,7 @@
 			</div>
 
 			<div id="profile">
-				<div id="userId" style="display: none;"><% @user.userId %></div>
+				<div id="userId" style="display: none;"><%= @user.id %></div>
 				<div id="pic"><img src="{{ user.picurl }}"></div>
 				<div id="username">
 					<a href="/square/logout">离席</a>
@@ -39,12 +39,12 @@
 				
 			<div class="lslip"></div>
 			<div id="latest-join" class="section">
-				<% @latestjoin.each do |latestjoin| %> 
-					<a href="javascript:void(0);" name="<%= latestjoin.roomid %>" class="blocka" title="加入">
+				<% @latestjoin.each do |key, latestjoin| %> 
+					<a href="javascript:void(0);" name="<%= latestjoin.id %>" class="blocka" title="加入">
 						<div name="<%= latestjoin.roomname %>" class="ljroomsection roomsection">
 						<div class="rs-above">
 							<form name="join" method="post" action="/shitsu/join" style="display: none;">
-								<input name="roomid" value="<%= latestjoin.roomid %>">
+								<input name="roomid" value="<%= latestjoin.id %>">
 							</form>
 
 							<div class="info">
@@ -63,12 +63,12 @@
 			<div class="slip"></div>
 
 			<div id="global-create" class="section">
-				<% @globalbuilt.each do |globalbuilt| %>
-					<a href="javascript:void(0);" name="<%= globalbuilt.roomid %>" class="blocka" title="加入">
+				<% @globalbuilt.each do |key, globalbuilt| %>
+					<a href="javascript:void(0);" name="<%= globalbuilt.id %>" class="blocka" title="加入">
 						<div name="<%= globalbuilt.roomname %>" class="glroomsection roomsection">
 						<div class="rs-above">
 							<form name="join" method="post" action="/shitsu/join" style="display: none;">
-								<input name="roomid" value="<%= globalbuilt.roomid %>">
+								<input name="roomid" value="<%= globalbuilt.id %>">
 							</form>
 
 							<div class="info">
@@ -88,13 +88,13 @@
 
 			<div id="self-built" class="section">
 				<div id="self-built-inner">
-				<% @selfbuilt.each do |selfbuilt| %>
-				<div id="room<%= selfbuilt.roomid %>" class="relative">
-					<a href="javascript:void(0);" name="<%= selfbuilt.roomid %>" class="blocka" title="加入">
+				<% @selfbuilt.each do |key, selfbuilt| %>
+				<div id="room<%= selfbuilt.id %>" class="relative">
+					<a href="javascript:void(0);" name="<%= selfbuilt.id %>" class="blocka" title="加入">
 						<div name="<%= selfbuilt.roomname %>" class="sbroomsection roomsection">
 							<div class="rs-above">
 								<form name="join" method="post" action="/shitsu/join" style="display: none;">
-									<input class="forminput" name="roomid" value="<%= selfbuilt.roomid %>">
+									<input class="forminput" name="roomid" value="<%= selfbuilt.id %>">
 								</form>	
 									
 								<div class="info">
@@ -106,8 +106,8 @@
 					</a>
 								
 					<div class="rs-low" style="display: none;">
-						<div class="rsl-l"><p>修改</p><p class="rid" style="display: none;"><%= selfbuilt.roomid %></p></div>
-						<div class="rsl-r"><p>注销</p><p class="rid" style="display: none;"><%= selfbuilt.roomid %></p></div>
+						<div class="rsl-l"><p>修改</p><p class="rid" style="display: none;"><%= selfbuilt.id %></p></div>
+						<div class="rsl-r"><p>注销</p><p class="rid" style="display: none;"><%= selfbuilt.id %></p></div>
 					</div>
 
 				</div>

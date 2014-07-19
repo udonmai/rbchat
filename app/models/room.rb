@@ -30,7 +30,7 @@ class Room < ActiveRecord::Base
 	end
 
 	def self.modify(newroomname, roomid, userId)
-		@room = where(id: roomid)
+		@room = where(id: roomid).first
 		if userId != @room.creator
 			return false
 		end
@@ -42,7 +42,7 @@ class Room < ActiveRecord::Base
 	end
 
 	def self.get(roomid)
-		@room = where(id: roomid)
+		@room = where(id: roomid).first
 		if !@room
 			return false
 		end
@@ -56,7 +56,7 @@ class Room < ActiveRecord::Base
 
 		Redis.incr('globalonlines')
 
-		Redis.zadd(userId + latestjoin, Time.now.to_i, roomid)
+		Redis.zadd(userId + 'latestjoin', Time.now.to_i, roomid)
 
 		@len = Redis.zcard(userId + 'latestjoin')
 		if @len > 7

@@ -17,7 +17,9 @@ class Member < ActiveRecord::Base
 	end	
 
 	def self.get(userId)
-		@member = where(id: userId)
+		@member = where(id: userId).first
+		puts @member
+		puts @member.id
 		return @member
 	end
 end

@@ -12,15 +12,11 @@ class ShitsuController < ApplicationController
 
 		# test
 		@user_id = '1'
-		@room_id = '1'
+		@room_id = '7'
 		
-		@tmpuser = Member.get(@user_id)
-		@tmproom = Room.get(@room_id)
+		@user = Member.get(@user_id)
+		@room = Room.get(@room_id)
 		@member = Room.onlinemembers(@room_id)
-
-		@member['name'] = @tmpuser['name']
-		@room['roomid'] = @tmproom['id']
-		@room['roomname'] = @tmproom['roomname']
 	end
 
 	def create
@@ -70,7 +66,7 @@ class ShitsuController < ApplicationController
 		@user_id = '1'
 		
 		Room.join(@room_id, @user_id)
-		redirect_to 'square'
+		redirect_to '/shitsu'
 	end
 	
 	def leave
@@ -79,7 +75,7 @@ class ShitsuController < ApplicationController
 		@user_id = '1'
 
 		Room.leave(@room_id, @user_id)
-		redirect_to 'square'
+		redirect_to '/square'
 	end
 	
 	def exist
