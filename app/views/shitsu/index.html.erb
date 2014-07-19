@@ -17,7 +17,7 @@
 <body>
 	<div id="wrap">
 	
-		<div id="roomid" style="display: none;"><%= @room.roomid %></div>
+		<div id="roomid" style="display: none;"><%= @room.id %></div>
 		
 		<div id="content">
 			<div id="chat">
@@ -41,14 +41,14 @@
 				</div>
 
 				<div id="member">
-					{% for item in onlinemembers %}	
+					<% @onlinemembers.each do |user| %> 
 						<div class="member">
-							<div class="memberpic"><img src="<%= @user.email %>"></div>
+							<div class="memberpic"><img src="<%= @user['email'] %>"></div>
 							<div class="membername">
-								<p><%= @user.name %></p>
+								<p><%= @user['name'] %></p>
 							</div>
 						</div>	
-					{% endfor %}
+					<% end %>
 				</div>
 
 				<div id="user">

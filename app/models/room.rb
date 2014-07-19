@@ -75,8 +75,8 @@ class Room < ActiveRecord::Base
 		@member = {}
 		@members = Redis.smembers('room' + roomid + 'mblist')
 		@members.each { |member| 
-			@member['username'] = Member.get(member)['username']
-			@member['email'] = Member.get(member)['email']
+			@member['name'] = Member.get(member).name
+			@member['email'] = Member.get(member).email
 		}
 	end
 

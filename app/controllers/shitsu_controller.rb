@@ -3,12 +3,12 @@
 class ShitsuController < ApplicationController
 	skip_before_filter  :verify_authenticity_token
 
-	@_sleepTime = 2.0
-	@_tries = 20
+	@@_sleepTime = 2.0
+	@@_tries = 20
 
 	def index
 		@room = {}
-		@member = {}
+		@onlinemembers = {}
 
 		# test
 		@user_id = '1'
@@ -16,7 +16,7 @@ class ShitsuController < ApplicationController
 		
 		@user = Member.get(@user_id)
 		@room = Room.get(@room_id)
-		@member = Room.onlinemembers(@room_id)
+		@onlinemembers = Room.onlinemembers(@room_id)
 	end
 
 	def create
@@ -109,17 +109,18 @@ class ShitsuController < ApplicationController
 
 	def checkupdate
 		@room_id = params[:roomid]
-		@stamp = pa[:stamp]
+		@stamp = params[:stamp]
+		p @stamp
 
 		@i = 0
-		while @i < @_tries
+		while @i < @@_tries
 			@update = Chat.getmsg(@room_id, @stamp)
 			if @update.size() > 0
 				@return = {'s' => 'exist', 'm' => '@update'}
 				render json: @return
 			end
 			
-			sleep(@_sleepTime)
+			sleep(@@_sleepTime)
 			@i += 1
 		end
 
