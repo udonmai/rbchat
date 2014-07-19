@@ -1,3 +1,4 @@
+# coding: utf-8
 class Room < ActiveRecord::Base
 	attr_accessible :creator, :roomname
 
@@ -44,9 +45,11 @@ class Room < ActiveRecord::Base
 	def self.get(roomid)
 		@room = where(id: roomid).first
 		if !@room
-			return false
+			@room = new
+			@room.roomname = '麥町的树上之家'
+			@room.creator = 1
+			@room.save
 		end
-
 		return @room
 	end
 

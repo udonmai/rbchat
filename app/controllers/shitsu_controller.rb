@@ -12,7 +12,7 @@ class ShitsuController < ApplicationController
 
 		# test
 		@user_id = '1'
-		@room_id = '7'
+		@room_id = '1'
 		
 		@user = Member.get(@user_id)
 		@room = Room.get(@room_id)
