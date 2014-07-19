@@ -110,14 +110,19 @@ class ShitsuController < ApplicationController
 	def checkupdate
 		@room_id = params[:roomid]
 		@stamp = params[:stamp]
+		@stamp['datetime'] = (@stamp['datetime'].to_i - 42).to_s
 		p @stamp
+		p 'above inside controller shitsu'
 
 		@i = 0
 		while @i < @@_tries
 			@update = Chat.getmsg(@room_id, @stamp)
+			puts 'fljasdl;flasdjlk;a'
+			puts @update
+			puts 'dsfasfjads;lfasdfjkas;'
 			if @update.size() > 0
-				@return = {'s' => 'exist', 'm' => '@update'}
-				render json: @return
+				@return = {'s' => 'exist', 'm' => @update}
+				render json: @return and return
 			end
 			
 			sleep(@@_sleepTime)
