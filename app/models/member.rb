@@ -18,8 +18,12 @@ class Member < ActiveRecord::Base
 
 	def self.get(userId)
 		@member = where(id: userId).first
-		puts @member
-		puts @member.id
+		if !@member
+			@member = new
+			@member.name = 'udonmai'
+			@member.email = 'udonmai@hero.me'
+			@member.save
+		end
 		return @member
 	end
 end
