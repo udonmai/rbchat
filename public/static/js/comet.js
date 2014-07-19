@@ -3,7 +3,7 @@ define(function(require) {
 	var Cookie = require('cookie');
 
 	return {
-		_sleepTime: 1200,
+		_sleepTime: 0,
 		_timeout: undefined,
 		_baseurl: 'shitsu/',
 		
@@ -79,6 +79,9 @@ define(function(require) {
 						var msg = new Array();
 						for (var i = 0; i < length; i ++) {
 							msg[i] = data['m'][i].split('+');
+							if (msg[i][1] == '') {
+								break;
+							}
 							$('#chatcontent').append('<div class="msg"><p class="msginfo">' + msg[i][0] + '</p><p class="msgcon">' + msg[i][1] + '</p></div>');
 							var y = $('#chatcontent').scrollTop();
 							$('#chatcontent').scrollTop(y + 100);
@@ -95,6 +98,7 @@ define(function(require) {
 			var stamp = this._getCurrentTimestamp();
 			Comet = this;
 	
+			$('#msgtext').val('')
 			$.post(this._baseurl + 'chat/', {
 				username: username,
 				roomid: roomid,
@@ -102,8 +106,8 @@ define(function(require) {
 				stamp: stamp
 			}, function(data) {
 				//var sdata = JSON.parse(data);
-				if (data['state'] == 'success') { 
-					$('#msgtext').val('');
+				if (data['state'] == 'fail') { 
+					$('#msgtext').val(message);
 					}
 			});
 		} 

@@ -3,8 +3,8 @@
 class ShitsuController < ApplicationController
 	skip_before_filter  :verify_authenticity_token
 
-	@@_sleepTime = 2.0
-	@@_tries = 20
+	@@_sleepTime = 1.45
+	@@_tries = 1
 
 	def index
 		@room = {}
@@ -110,22 +110,27 @@ class ShitsuController < ApplicationController
 	def checkupdate
 		@room_id = params[:roomid]
 		@stamp = params[:stamp]
-		@stamp['datetime'] = (@stamp['datetime'].to_i - 42).to_s
-		p @stamp
-		p 'above inside controller shitsu'
+		@stamp['datetime'] = (@stamp['datetime'].to_i - 3).to_s
+		@datatime = Time.at(@stamp['datetime'].to_i).strftime("%Y-%m-%d %H:%M:%S")
+
+		puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
+		p @stamp['datetime']
+		p @datatime
+		puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 
 		@i = 0
 		while @i < @@_tries
+			sleep(@@_sleepTime)
+			
 			@update = Chat.getmsg(@room_id, @stamp)
-			puts 'fljasdl;flasdjlk;a'
+			puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 			puts @update
-			puts 'dsfasfjads;lfasdfjkas;'
+			puts '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 			if @update.size() > 0
 				@return = {'s' => 'exist', 'm' => @update}
 				render json: @return and return
 			end
 			
-			sleep(@@_sleepTime)
 			@i += 1
 		end
 
