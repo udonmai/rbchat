@@ -7,6 +7,9 @@ class Member < ActiveRecord::Base
 					format: { with: VALID_EMAIL_REGEX },
 					uniqueness: true
 
+	include Gravtastic
+	gravtastic
+
 	def self.add(username, email)
 		@member = new
 		@member.name = username

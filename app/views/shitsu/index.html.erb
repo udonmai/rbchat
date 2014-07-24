@@ -43,7 +43,7 @@
 				<div id="member">
 					<% @onlinemembers.each do |user| %> 
 						<div class="member">
-							<div class="memberpic"><img src="<%= @user['email'] %>"></div>
+							<div class="memberpic"><img src="<%= @user.gravatar_url(:email=>@user['email']) %>"></div>
 							<div class="membername">
 								<p><%= @user['name'] %></p>
 							</div>
@@ -53,7 +53,7 @@
 
 				<div id="user">
 					<div id="username" style="display: none;"><%= @user.name %></div>
-					<div id="avatar"><img src="<%= @user.email %>"></div>
+					<div id="avatar"><img src="<%= @user.gravatar_url(:email=>@user['email']) %>"></div>
 					<div id="function">
 						<div id="leave">
 							<form action="/shitsu/leave" method="post">

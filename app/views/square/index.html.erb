@@ -24,7 +24,7 @@
 
 			<div id="profile">
 				<div id="userId" style="display: none;"><%= @user.id %></div>
-				<div id="pic"><img src="{{ user.picurl }}"></div>
+				<div id="pic"><img src="<%= @user.gravatar_url(:size=>50) %>"></div>
 				<div id="username">
 					<a href="/square/logout">离席</a>
 					<p>欢迎，<%= @user.name %></p>
