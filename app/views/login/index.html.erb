@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="/static/css/bootstrap.min.css">
 	<link rel="stylesheet" href="/static/css/common.css">
 	<link rel="stylesheet" href="/static/css/login.css">
+	<script src="/static/js/lib/sea.js" data-main="/static/js/loginit"></script>
+
 
 </head>
 
@@ -36,7 +38,12 @@
 				<div id="action">
 					<p id="in"><a href="javascript:coid(0)">请坐</a></p>
 					<br>
-					<p>我们使用 <a href="http://gravatar.com">Gravatar</a> 为您的头像进行驱动。</p>
+					<form name="login" method="post" action="/login/in" style="display:none;">
+						<span>名号:</span><input name="name" value="" required><br>
+						<span>邮箱:</span><input name="email" value="" required><br>
+						<button type="submit" class="btn formbtn">入席</button>
+					</form>
+					<p id="gra">我们使用 <a href="http://gravatar.com">Gravatar</a> 为您的头像进行驱动。</p>
 				</div>
 			</div>
 		<div>

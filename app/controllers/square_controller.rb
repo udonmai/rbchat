@@ -1,8 +1,19 @@
 class SquareController < ApplicationController
 
 	def index
-		# test, get from session in production
-		@user_id = '1'
+		
+		@user_id = session[:current_user_id]
+		@room_id = session[:room_id]
+
+		if !@user_id
+			redirect_to '/login'
+			return
+		end
+		
+		if (@user_id && @room_id)
+			redirect_to '/shitsu'
+		end
+
 		@selfbuilt = {}
 		@latestjoin = {}
 		@globalbuilt = {}
@@ -16,12 +27,6 @@ class SquareController < ApplicationController
 			if !@tmp_room then next end
 			@selfbuilt[@tmp_room.id.to_s] = {}
 			@selfbuilt[@tmp_room.id.to_s] = @tmp_room
-
-			@selfbuilt.each { |sb| 
-				p sb[1]
-				p sb[0]
-				p 'fasfdsfasfasdfdasfi'
-			}
 		}
 
 		@latestjoins.each { |latestjoin| 
@@ -42,7 +47,8 @@ class SquareController < ApplicationController
 	end
 
 	def logout
-		
+		@user_id = session['current_user_id'] = nil
+		redirect_to '/login'
 	end
 
 

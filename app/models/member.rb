@@ -11,6 +11,12 @@ class Member < ActiveRecord::Base
 	gravtastic
 
 	def self.add(username, email)
+		@member = where(name: username).first
+
+		if @member
+			return @member
+		end
+
 		@member = new
 		@member.name = username
 		@member.email = email
@@ -21,12 +27,6 @@ class Member < ActiveRecord::Base
 
 	def self.get(userId)
 		@member = where(id: userId).first
-		if !@member
-			@member = new
-			@member.name = 'udonmai'
-			@member.email = 'udonmai@hero.me'
-			@member.save
-		end
 		return @member
 	end
 end

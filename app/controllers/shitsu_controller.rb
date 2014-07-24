@@ -7,12 +7,23 @@ class ShitsuController < ApplicationController
 	@@_tries = 1
 
 	def index
+
 		@room = {}
 		@onlinemembers = {}
 
-		# test
-		@user_id = '1'
-		@room_id = '1'
+		@user_id = session[:current_user_id]
+		@room_id = session[:room_id]
+
+
+		if !(@user_id || @room_id)
+			redirect_to '/login'
+			return
+		end
+
+		if !@room_id
+			redirect_to '/square'
+			return
+		end
 		
 		@user = Member.get(@user_id)
 		@room = Room.get(@room_id)
@@ -62,8 +73,8 @@ class ShitsuController < ApplicationController
 
 	def join
 		@room_id = params[:roomid]
-		# test
-		@user_id = '1'
+		@user_id = session[:current_user_id]
+		session[:room_id] = @room_id
 		
 		Room.join(@room_id, @user_id)
 		redirect_to '/shitsu'
@@ -71,10 +82,11 @@ class ShitsuController < ApplicationController
 	
 	def leave
 		@room_id = params[:roomid]
-		# test
-		@user_id = '1'
+		@user_id = session[:current_user_id]
 
 		Room.leave(@room_id, @user_id)
+		session[:room_id] = nil
+
 		redirect_to '/square'
 	end
 	

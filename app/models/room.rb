@@ -44,12 +44,6 @@ class Room < ActiveRecord::Base
 
 	def self.get(roomid)
 		@room = where(id: roomid).first
-		if !@room
-			@room = new
-			@room.roomname = '麥町的树上之家'
-			@room.creator = 1
-			@room.save
-		end
 		return @room
 	end
 

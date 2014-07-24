@@ -46,10 +46,39 @@
 	width:350px;
 	padding:135px 0 0 50px;
 	float:left;
-	background: url(../img/pattern3.png) no-repeat 44% 80%; 
+	background: url(../img/pattern3.png) no-repeat 44% 85px; 
+}
+
+#action form {
+	position:relative;
+	left:0;
+	top:-50px;
+	z-index:20;
+}
+
+#action form span {
+	display:inline-block;
+	height:20px;
+	margin-right:10px;
+	vertical-align:middle;
+}
+
+#action form input {
+	width:160px;
+}
+
+#action form .btn {
+	margin-left: 160px;
 }
 
 #in {
+	position:relative;
 	font-size:16px;
+	top:-40px;
 	padding-left:100px;
+}
+
+#gra {
+	position:relative;
+	top:-40px;
 }
