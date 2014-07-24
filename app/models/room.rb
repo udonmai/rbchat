@@ -78,6 +78,7 @@ class Room < ActiveRecord::Base
 			@member[i]['email'] = Member.get(member).email
 			i += 1
 		}
+		return @member
 	end
 
 end
