@@ -1,3 +1,7 @@
+body {
+	background: url(../img/tc_bak.jpg);
+}
+
 #wrap {
 	padding: 50px 0;
 }
