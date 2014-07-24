@@ -43,7 +43,7 @@
 				<div id="member">
 					<% @onlinemembers.each do |key, user| %> 
 						<div class="member">
-							<div class="memberpic"><img src="<%= @user.gravatar_url(:email=>user['email']) %>"></div>
+							<div class="memberpic"><img src="<%= user['picurl'] %>"></div>
 							<div class="membername">
 								<p><%= user['name'] %></p>
 							</div>

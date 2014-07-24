@@ -69,13 +69,17 @@ class Room < ActiveRecord::Base
 	end
 
 	def self.onlinemembers(roomid)
+		require 'digest/md5'
+
 		i = 0
 		@member = {}
 		@members = Redis.smembers('room' + roomid + 'mblist')
 		@members.each { |member| 
 			@member[i] = {}
 			@member[i]['name'] = Member.get(member).name
-			@member[i]['email'] = Member.get(member).email
+			@email = Member.get(member).email
+			@hash = Digest::MD5.hexdigest(@email)
+			@member[i]['picurl'] = "http://www.gravatar.com/avatar/#{@hash}"
 			i += 1
 		}
 		return @member
