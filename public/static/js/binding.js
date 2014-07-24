@@ -19,6 +19,10 @@ define(function(require) {
 
 				var userid = $('#userId').text();	
 				var roomname = $('#createroom').val();
+				if (roomname == "") {
+					alert('不能是空的');
+					return;
+				}
 				var baseurl = e.data.baseurl;
 
 				var roomnum = $('.relative').length;
@@ -46,7 +50,10 @@ define(function(require) {
 							that.find('.rs-low .rid').text(roomid);
 							that.find('.info').text(roomname);
 							$('.textinput').hide();
+							$('.susinfo').fadeIn();
 							$('.textinput input').attr('value', '');
+							setTimeout(function() {}, 1000);
+							$('.susinfo').fadeOut();
 
 						} 
 						else {
@@ -73,7 +80,10 @@ define(function(require) {
 						} 
 						else {
 							$('#room'+ roomid).remove();	
+							$('.desinfo').fadeIn();
 							$('.destroyinput').hide();
+							setTimeout(function() {}, 1000);
+							$('.desinfo').fadeOut();
 						}
 					});
 
@@ -82,9 +92,13 @@ define(function(require) {
 			//修改
 			$('#modifybtn').click({baseurl: baseurl}, function(e) {
 				
-				var userid = $('#userId').text();	
+				var userid = $('#userId').text();
 				var roomid = $(this).next().text();
 				var newroomname = $('#modifyroom').val();
+				if (newroomname == "") {
+					alert('不能是空的');
+					return;
+				}
 				var baseurl = e.data.baseurl;
 
 				$.post(baseurl + 'modify', {
@@ -98,8 +112,11 @@ define(function(require) {
 						} 
 						else {
 							$('#room' + roomid).find('.info').text(newroomname);	
+							$('.modinfo').fadeIn();
 							$('.modifyinput').hide();
 							$('.modifyinput input').attr('value', '');
+							setTimeout(function() {}, 1000);
+							$('.modinfo').fadeOut();
 						}
 					});
 
@@ -176,6 +193,26 @@ define(function(require) {
 		            return false;
 		        }
 		    });
+
+
+			//茶室数目
+			$('#anonymous .btn').click({baseurl: baseurl}, function(e) {
+				
+				var baseurl = e.data.baseurl;
+
+				$.post(baseurl + 'totalrooms', {
+					}, function(data) {
+						//var data = JSON.parse(data);
+						if (data['state'] == 'fail') {
+							alert(data['msg']);	
+						} 
+						else {
+							$('#search span').text('  ==>  ' + data['num']);
+						}
+						return;
+					});
+
+				});
 
 
 		}

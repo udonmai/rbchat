@@ -150,4 +150,10 @@ class ShitsuController < ApplicationController
 		render json: @return
 	end
 
+	def totalrooms
+		@num = {'state'=> 'success', 'num'=> Room.all.size()}
+		render json: @num
+	end
+
+
 end

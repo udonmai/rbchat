@@ -18,5 +18,6 @@ match '/shitsu/checkupdate',    to: 'shitsu#checkupdate',    via: 'post'
 match '/shitsu/chat',    to: 'shitsu#chat',    via: 'post'
 match '/shitsu/join',    to: 'shitsu#join',    via: 'post'
 match '/shitsu/leave',    to: 'shitsu#leave',    via: 'post'
+match '/shitsu/totalrooms',    to: 'shitsu#totalrooms',    via: 'post'
 
 end

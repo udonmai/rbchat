@@ -219,3 +219,14 @@
 .blocka {
 	display: block;
 }
+
+.susinfo, .modinfo, .desinfo {
+	height: 50px;
+}
+
+#search {
+	width:200px;
+	display:inline;
+	margin: auto 0;
+}
+
