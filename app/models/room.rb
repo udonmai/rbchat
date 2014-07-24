@@ -69,11 +69,14 @@ class Room < ActiveRecord::Base
 	end
 
 	def self.onlinemembers(roomid)
+		i = 0
 		@member = {}
 		@members = Redis.smembers('room' + roomid + 'mblist')
 		@members.each { |member| 
-		@member['name'] = Member.get(member).name
-		@member['email'] = Member.get(member).email
+			@member[i] = {}
+			@member[i]['name'] = Member.get(member).name
+			@member[i]['email'] = Member.get(member).email
+			i += 1
 		}
 	end
 
